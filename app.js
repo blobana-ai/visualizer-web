@@ -4,8 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // API Endpoint
   const apiUrl = 'http://localhost:5000'; // Replace with your actual API URL
 
-  const randomGifBaseUrl = 'assets/random/';
-  const defaultGifUrl = 'assets/random/idle.gif';
+  const defaultGifUrl = 'assets/baby/idle.gif';
   gifContainer.src = defaultGifUrl;
 
   // Function to fetch data from API
@@ -15,15 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = await response.json();
 
       // Check for 'random' field
-      if (data.emotion) {
-        gifContainer.src = randomGifBaseUrl + data.emotion + '.gif';
-      } else if (data.happiness && data.growth) {
+      if (data.emotion && data.growth) {
         // Construct the gif filename from happiness and growth
-        const gifFilename = `${data.happiness}-${data.growth}.gif`;
-        gifContainer.src = `assets/${gifFilename}`;
-      } else {
-        // Fallback for missing data
-        gifContainer.src = defaultGifUrl;
+        gifContainer.src = `assets/${data.growth}/${data.emotion}.gif`;
       }
 
     } catch (error) {
