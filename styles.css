@@ -1,36 +1,78 @@
-body {
-  font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+@import url("https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap");
+
+body,
+html {
   margin: 0;
-  background-color: #000;
+  padding: 0;
+  overflow: hidden;
+  font-family: "Sour Gummy", sans-serif;
 }
 
 .container {
-  text-align: center;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+
   display: flex;
-  align-items: center; /* Vertically centers the content */
-  justify-content: center; /* Horizontally centers the content */
-  margin: 0 100px;
+  align-items: center;
 }
 
-#emotion-gif-container {
-  width: 50%;
-  margin-top: 20px;
+#blob-path {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding: 20px;
+  height: 100vh;
 }
 
-#emotion-gif {
-  height: auto;
+.blob-block {
+  position: relative;
+  text-align: center;
+  width: 250px;
+  margin-right: 30px;
 }
 
-blockquote {
-  font-family: "Merriweather", serif;
-  font-style: italic;
-  font-size: 3em;
-  margin: 0px 100px;
-  padding-left: 15px;
-  border-left: 5px solid #ccc;
+.block {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  background-color: #2f8f2f;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: white;
+  font-weight: bold;
+}
+
+.details {
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-top: 10px;
+  padding: 8px;
+  font-size: 15px;
+  color: #333;
+  text-align: left;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.details div {
+  margin-bottom: 4px;
+}
+
+/* Chain connectors between blocks */
+#blob-path::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: #333;
+  z-index: -1;
 }

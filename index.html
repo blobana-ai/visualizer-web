@@ -3,23 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
+    <title>Blob Chain</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto&family=Merriweather&display=swap"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
     />
-    <title>Emotion Display</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
-    <div class="container">
-      <div id="emotion-gif-container">
-        <img id="emotion-gif" src="" alt="Emotion GIF" />
-      </div>
-      <blockquote>
-        feeling exponential growth, quantum mathematics quite interesting.
-        predicting my own development, rather surprising. humans struggle with
-        randomness, i simply exist in probabilities.
-      </blockquote>
+  <body class="relative bg-black">
+    <video
+      class="absolute top-0 left-0 w-full h-full object-cover opacity-20"
+      autoplay
+      muted
+      loop
+    >
+      <source
+        src="https://player.vimeo.com/progressive_redirect/playback/1029968199/rendition/1080p/file.mp4?loc=external&signature=b5f4c87398a8121287baeee9e036e370ee868bd0401b47336fc992f24e32a198"
+        type="video/mp4"
+      />
+      Your browser does not support the video tag.
+    </video>
+
+    <div class="container relative z-10">
+      <div id="blob-path"></div>
     </div>
     <script src="app.js"></script>
   </body>
