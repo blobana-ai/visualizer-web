@@ -31,21 +31,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const details = document.createElement("div");
     details.classList.add("details");
     details.innerHTML = `
-        <div><strong class="text-base flex">Tweet / Onchain Memo:</strong> "Sample message ${
+        <div><strong class="text-sm flex">Tweet / Onchain Memo:</strong> "Sample message ${
           i + 1
         }"</div>
-        <div><strong class="text-base flex">Timestamp:</strong> 2024-11-15 10:45</div>
-        <div><strong class="text-base flex">Emotion Status:</strong> Happy</div>
-        <div><strong class="text-base flex">Token Status:</strong> ${
+        <div><strong class="text-sm flex">Timestamp:</strong> 2024-11-15 10:45</div>
+        <div><strong class="text-sm flex">Emotion Status:</strong> Happy</div>
+        <div><strong class="text-sm flex">Token Status:</strong> ${
           100 + i * 10
         } $BLOB</div>
-        <div><strong class="text-base flex">Market Cap:</strong> $${
+        <div><strong class="text-sm flex">Market Cap:</strong> $${
           10000 + i * 500
         }</div>
-        <div><strong class="text-base flex">Holders:</strong> ${
+        <div><strong class="text-sm flex">Holders:</strong> ${
           250 + i * 10
         }</div>
-        <div><strong class="text-base flex">Treasury Worth:</strong> $${
+        <div><strong class="text-sm flex">Treasury Worth:</strong> $${
           5000 + i * 250
         }</div>
       `;

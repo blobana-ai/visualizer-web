@@ -30,12 +30,11 @@ html {
   position: relative;
   text-align: center;
   width: 250px;
-  margin-right: 30px;
 }
 
 .block {
-  width: 150px;
-  height: 150px;
+  width: 250px;
+  height: 250px;
   margin: 0 auto;
   background-color: #2f8f2f;
   background-size: cover;
@@ -51,6 +50,9 @@ html {
 }
 
 .details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   background-color: #f5f5f5;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -61,9 +63,9 @@ html {
   text-align: left;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
-
 .details div {
-  margin-bottom: 4px;
+  padding-radius: 4px;
+  padding-top: 4px;
 }
 
 /* Chain connectors between blocks */
