@@ -33,6 +33,7 @@ html {
 }
 
 .block {
+  position: relative;
   width: 250px;
   height: 250px;
   margin: 0 auto;
@@ -78,4 +79,98 @@ html {
   height: 3px;
   background-color: #333;
   z-index: -1;
+}
+.read-more-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 0.875rem;
+}
+.read-more-btn:hover {
+  color: #1e40af; /* Tailwind text-blue-800 */
+}
+
+/* Angled Blob Button Styles */
+.button-container {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  z-index: 20; /* Ensure it appears above other content */
+}
+
+.angled-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(-10deg); /* Tilted appearance */
+  background-color: #ff69b4; /* Cute pink */
+  padding: 1rem 2rem;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 50px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.angled-button:hover {
+  transform: rotate(-5deg) scale(1.05); /* Slight zoom */
+  box-shadow: 0px 8px 20px rgba(255, 105, 180, 0.5);
+}
+
+.icon {
+  margin-right: 0.5rem;
+}
+
+.icon-image {
+  width: 24px;
+  height: 24px;
+  animation: blob-bounce 1.5s infinite; /* Blob bounce effect */
+}
+
+.text {
+  font-weight: bold;
+  font-family: "Sour Gummy", sans-serif; /* Cute font */
+  text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Blob Bounce Animation */
+@keyframes blob-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+/* Button Styles for Each Block */
+.block-button {
+  position: absolute;
+  top: -60px;
+  right: -30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 85px;
+  height: 85px;
+  margin-top: 10px;
+  background-image: url("/assets/blobshape.gif"); /* Blob Shape GIF */
+  background-size: cover;
+  background-position: center;
+  border: none;
+  text-decoration: none;
+  border-radius: 50%;
+  color: #fff;
+  font-weight: bold;
+  font-size: rem;
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blob-text {
+  position: absolute;
+  font-family: "Sour Gummy", sans-serif; /* Cute font */
+  text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
 }
