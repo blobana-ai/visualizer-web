@@ -69,17 +69,6 @@ html {
   padding-top: 4px;
 }
 
-/* Chain connectors between blocks */
-#blob-path::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background-color: #333;
-  z-index: -1;
-}
 .read-more-btn {
   background: none;
   border: none;
@@ -173,4 +162,26 @@ html {
   position: absolute;
   font-family: "Sour Gummy", sans-serif; /* Cute font */
   text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+#blob-path::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #ff69b4, #6a5acd, #48d1cc);
+  background-size: 300%;
+  z-index: -1;
+  animation: gradient-move 5s infinite linear;
+}
+
+@keyframes gradient-move {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
 }
