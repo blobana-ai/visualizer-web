@@ -2,9 +2,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const blobPath = document.getElementById("blob-path");
   const numBlobs = 50; // Number of blocks
   const horizontalSpacing = 180; // Adjust horizontal spacing to fit more content
-  const imageCategories = ["baby", "child", "fatter"]; // The three image categories
-  const emotions = ["curious", "happy", "idle", "normal", "sad", "tired"]; // Emotions to pick from
+  const imageCategories = ["baby", "child", "fatter"];
+  const emotions = ["curious", "happy", "idle", "normal", "sad", "tired"];
   let scrollPosition = 0;
+  let targetScrollPosition = 0;
+  let isDragging = false;
+  let startX = 0;
+  let animationFrameId;
 
   function getRandomImagePath() {
     const category =
@@ -55,13 +59,10 @@ document.addEventListener("DOMContentLoaded", () => {
       }</div>
     `;
 
-    // Add a button to each block
     const button = document.createElement("a");
     button.href = "https://example.com";
     button.classList.add("block-button");
-    button.innerHTML = `
-      <span class="blob-text">TXN</span>
-    `;
+    button.innerHTML = `<span class="blob-text">TXN</span>`;
 
     blobBlock.appendChild(block);
     blobBlock.appendChild(details);
@@ -72,7 +73,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     blobPath.appendChild(blobBlock);
 
-    // Event listener for "Read More" button
     if (isTruncated) {
       const readMoreBtn = details.querySelector(".read-more-btn");
       readMoreBtn.addEventListener("click", () => {
@@ -83,12 +83,71 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  window.addEventListener("wheel", (event) => {
-    scrollPosition += event.deltaY * 0.2;
-    scrollPosition = Math.max(
-      0,
-      Math.min(scrollPosition, numBlobs * horizontalSpacing - window.innerWidth)
-    );
+  function animateScroll() {
+    scrollPosition += (targetScrollPosition - scrollPosition) * 0.1; // Smooth easing
     blobPath.style.transform = `translateX(${-scrollPosition}px)`;
+
+    // Stop animation when close enough to target
+    if (Math.abs(targetScrollPosition - scrollPosition) > 0.5) {
+      animationFrameId = requestAnimationFrame(animateScroll);
+    } else {
+      scrollPosition = targetScrollPosition;
+    }
+  }
+
+  function updateScrollPosition(delta) {
+    targetScrollPosition += delta;
+    targetScrollPosition = Math.max(
+      0,
+      Math.min(
+        targetScrollPosition,
+        numBlobs * horizontalSpacing - window.innerWidth
+      )
+    );
+
+    if (!animationFrameId) {
+      animationFrameId = requestAnimationFrame(animateScroll);
+    }
+  }
+
+  // Dragging support
+  blobPath.addEventListener("pointerdown", (event) => {
+    isDragging = true;
+    startX = event.clientX;
+    blobPath.style.cursor = "grabbing";
+    document.body.style.userSelect = "none"; // Prevent text selection
   });
+
+  blobPath.addEventListener("pointermove", (event) => {
+    if (!isDragging) return;
+    const deltaX = startX - event.clientX;
+    updateScrollPosition(deltaX);
+    startX = event.clientX;
+  });
+
+  window.addEventListener("pointerup", () => {
+    isDragging = false;
+    blobPath.style.cursor = "grab";
+    document.body.style.userSelect = ""; // Restore text selection
+  });
+
+  // Mouse wheel support
+  window.addEventListener("wheel", (event) => {
+    updateScrollPosition(event.deltaY * 0.2);
+  });
+
+  // Touch swipe support
+  let touchStartX = 0;
+  window.addEventListener("touchstart", (event) => {
+    touchStartX = event.touches[0].clientX;
+  });
+
+  window.addEventListener("touchmove", (event) => {
+    const touchDeltaX = touchStartX - event.touches[0].clientX;
+    updateScrollPosition(touchDeltaX);
+    touchStartX = event.touches[0].clientX;
+  });
+
+  // Set cursor for blob-path
+  blobPath.style.cursor = "grab";
 });
