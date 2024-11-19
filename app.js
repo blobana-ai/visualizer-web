@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       `;
 
       const button = document.createElement("a");
-      button.href = `https://solscan.io/tx/${blob.txHash}?cluster=devnet`;
+      button.href = `https://solscan.io/tx/${blob.txHash}`;
       button.classList.add("block-button");
       button.innerHTML = `<span class="blob-text leading-none">View <br/>TXN</span>`;
       button.target = "_blank";
