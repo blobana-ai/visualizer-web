@@ -48,15 +48,18 @@ document.addEventListener("DOMContentLoaded", async () => {
         : blob.message;
 
       details.innerHTML = `
-        <div><i class="fas fa-comment"></i> <a href="https://x.com/${blobXHandle}/status/${blob.tweetId
-        }" target="_blank" style="color: blue;">Tweet</a> / Onchain Memo:  <span>${displayedMessage}</span> ${isTruncated
+        <div><i class="fas fa-comment"></i> <a href="https://x.com/${blobXHandle}/status/${
+        blob.tweetId
+      }" target="_blank" style="color: blue;">Tweet</a> / Onchain Memo:  <span>${displayedMessage}</span> ${
+        isTruncated
           ? `<button class="read-more-btn text-blue-500">Read More</button>`
           : ""
-        }</div>
+      }</div>
         <div><i class="fas fa-clock"></i> Timestamp:  ${new Date(
           blob.timestamp
         ).toLocaleString()}</div>
-        <div><i class="fas fa-square"></i> Blocknumber:  ${blob.blocknumber
+        <div><i class="fas fa-square"></i> Blocknumber:  ${
+          blob.blocknumber
         }</div>
         <div><i class="fas fa-smile"></i> Emotion Status:  ${blob.emotion}</div>
         <div><i class="fas fa-coins"></i> Token:  $${blob.price}</div>
@@ -130,10 +133,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     targetScrollPosition += delta;
     targetScrollPosition = Math.max(
       0,
-      Math.min(
-        targetScrollPosition,
-        numBlobs * realWidth - window.innerWidth
-      )
+      Math.min(targetScrollPosition, numBlobs * realWidth - window.innerWidth)
     );
 
     if (!animationFrameId) {
