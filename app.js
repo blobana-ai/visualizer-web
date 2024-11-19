@@ -47,28 +47,24 @@ document.addEventListener("DOMContentLoaded", async () => {
         : blob.message;
 
       details.innerHTML = `
-        <div><strong><i class="fas fa-comment"></i> <a href="https://x.com/${blobXHandle}/status/${
+        <div><i class="fas fa-comment"></i> <a href="https://x.com/${blobXHandle}/status/${
         blob.tweetId
-      }" target="_blank" style="color: blue;">Tweet</a> / Onchain Memo:</strong> <span>${displayedMessage}</span> ${
+      }" target="_blank" style="color: blue;">Tweet</a> / Onchain Memo:  <span>${displayedMessage}</span> ${
         isTruncated
           ? `<button class="read-more-btn text-blue-500">Read More</button>`
           : ""
       }</div>
-        <div><strong><i class="fas fa-clock"></i> Timestamp:</strong> ${new Date(
+        <div><i class="fas fa-clock"></i> Timestamp:  ${new Date(
           blob.timestamp
         ).toLocaleString()}</div>
-        <div><strong><i class="fas fa-block"></i> Blocknumber:</strong> ${
+        <div><i class="fas fa-square"></i> Blocknumber:  ${
           blob.blocknumber
         }</div>
-        <div><strong><i class="fas fa-smile"></i> Emotion Status:</strong> ${
-          blob.emotion
-        }</div>
-        <div><strong><i class="fas fa-coins"></i> Token:</strong> $${
-          blob.price
-        }</div>
-        <div><strong><i class="fas fa-chart-line"></i> Market Cap:</strong> $${blob.mcap.toLocaleString()}</div>
-        <div><strong><i class="fas fa-users"></i> Holders:</strong> ${blob.holders.toLocaleString()}</div>
-        <div><strong><i class="fas fa-piggy-bank"></i> Treasury Worth:</strong> $${blob.treasury.toLocaleString()}</div>
+        <div><i class="fas fa-smile"></i> Emotion Status:  ${blob.emotion}</div>
+        <div><i class="fas fa-coins"></i> Token:  $${blob.price}</div>
+        <div><i class="fas fa-chart-line"></i> Market Cap:  $${blob.mcap.toLocaleString()}</div>
+        <div><i class="fas fa-users"></i> Holders:  ${blob.holders.toLocaleString()}</div>
+        <div><i class="fas fa-piggy-bank"></i> Treasury Worth:  $${blob.treasury.toLocaleString()}</div>
       `;
 
       const button = document.createElement("a");
