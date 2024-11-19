@@ -12,12 +12,9 @@ html {
   position: relative;
   width: 100vw;
   height: 100vh;
-
-  display: flex;
-  align-items: center;
 }
 
-#blob-path {
+/* #blob-path {
   position: relative;
   display: flex;
   align-items: center;
@@ -25,25 +22,25 @@ html {
   padding: 20px;
   height: 100vh;
   min-width: 10000000px;
-}
+} */
 
 .blob-block {
   position: relative;
   text-align: center;
-  width: 250px;
+  width: 300px;
 }
 
 .block {
   position: relative;
-  width: 250px;
-  height: 250px;
+  width: 300px;
+  height: 300px;
   margin: 0 auto;
   background-color: black;
   background-size: cover;
   background-position: center;
   border: 3px solid #fff;
   border-radius: 8px;
-  box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.2);
+  box-shadow: 0px 4px 8px rgba(25 5, 255, 255, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -139,7 +136,7 @@ html {
 .block-button {
   position: absolute;
   top: -60px;
-  right: -30px;
+  right: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -164,7 +161,7 @@ html {
   font-family: "Sour Gummy", sans-serif; /* Cute font */
   text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
 }
-
+/* 
 #blob-path::before {
   content: "";
   position: absolute;
@@ -176,7 +173,7 @@ html {
   background-size: 300%;
   z-index: -1;
   animation: gradient-move 5s infinite linear;
-}
+} */
 
 @keyframes gradient-move {
   0% {
@@ -185,4 +182,59 @@ html {
   100% {
     background-position: 100% 50%;
   }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+*:focus {
+  outline: 0;
+}
+
+html {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+  background-color: #000000;
+}
+
+.carousel {
+  height: 1200px;
+  perspective: 600px;
+  transform: translateY(-300px);
+}
+
+.carousel .carousel-item {
+  cursor: grab;
+  width: 500px;
+}
+
+.carousel .carousel-item:active {
+  cursor: grabbing;
+}
+
+.carousel .carousel-item:not(.active) .details {
+  display: none;
+}
+
+.carousel .carousel-item:not(.active) .block-button {
+  display: none;
+}
+
+.carousel .carousel-item img {
+  width: 100%;
+}
+
+.carousel .carousel-item h3 {
+  background-color: #ffffff;
+  color: #000000;
+  font-size: 2em;
+  font-weight: bold;
+  margin: -5px 0 0;
+  padding: 10px 5px;
+  text-align: center;
 }

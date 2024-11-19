@@ -2,14 +2,6 @@ const blobXHandle = "xdev007_";
 
 document.addEventListener("DOMContentLoaded", async () => {
   const blobPath = document.getElementById("blob-path");
-  const horizontalSpacing = 180; // Adjust horizontal spacing to fit more content
-  const realWidth = 250 + horizontalSpacing + 30; // 30 gap
-  let scrollPosition = 0;
-  let targetScrollPosition = 0;
-  let isDragging = false;
-  let startX = 0;
-  let animationFrameId;
-  let numBlobs = 0;
 
   // Fetch data from the API
   async function fetchBlobData() {
@@ -27,11 +19,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // Render blob blocks
   function renderBlobs(data) {
-    blobPath.innerHTML = ""; // Clear existing content
+    // blobPath.innerHTML = ""; // Clear existing content
 
     data.forEach((blob, i) => {
       const blobBlock = document.createElement("div");
-      blobBlock.classList.add("blob-block");
+      blobBlock.classList.add("carousel-item");
 
       const block = document.createElement("div");
       block.classList.add("block");
@@ -74,10 +66,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       blobBlock.appendChild(block);
       blobBlock.appendChild(details);
       blobBlock.appendChild(button);
-
-      const xPos = i * horizontalSpacing;
-      blobBlock.style.left = `${xPos}px`;
-
       blobPath.appendChild(blobBlock);
 
       if (isTruncated) {
@@ -92,93 +80,15 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   // Initialize
-  const blobData = await fetchBlobData();
-  numBlobs = blobData.length;
-
-  // Scroll to the last card
-  function scrollToLastCard() {
-    const totalWidth = numBlobs * realWidth;
-    const containerWidth = window.innerWidth;
-
-    // Set the initial target scroll position to the last card
-    targetScrollPosition = Math.max(0, totalWidth - containerWidth);
-
-    // Start animation to scroll smoothly
-    if (!animationFrameId) {
-      animationFrameId = requestAnimationFrame(animateScroll);
-    }
-  }
-
-  // Call scrollToLastCard after rendering the blobs
+  let blobData = await fetchBlobData();
+  blobData = [...blobData, ...blobData, ...blobData, ...blobData, ...blobData, ...blobData, ...blobData, ...blobData, ...blobData, ...blobData, ...blobData, ...blobData, ...blobData, ...blobData, ...blobData, ...blobData, ...blobData, ...blobData, ...blobData, ...blobData, ...blobData]
   renderBlobs(blobData);
-  scrollToLastCard();
-
-  function animateScroll() {
-    scrollPosition += (targetScrollPosition - scrollPosition) * 0.1; // Smooth easing
-    blobPath.style.transform = `translateX(${-scrollPosition}px)`;
-
-    // Stop animation when close enough to target
-    if (Math.abs(targetScrollPosition - scrollPosition) > 0.5) {
-      animationFrameId = requestAnimationFrame(animateScroll);
-    } else {
-      scrollPosition = targetScrollPosition;
-      animationFrameId = null; // Ensure animation stops
-    }
-  }
-
-  function updateScrollPosition(delta) {
-    targetScrollPosition += delta;
-    targetScrollPosition = Math.max(
-      0,
-      Math.min(
-        targetScrollPosition,
-        numBlobs * realWidth - window.innerWidth
-      )
-    );
-
-    if (!animationFrameId) {
-      animationFrameId = requestAnimationFrame(animateScroll);
-    }
-  }
-
-  // Dragging support
-  blobPath.addEventListener("pointerdown", (event) => {
-    isDragging = true;
-    startX = event.clientX;
-    blobPath.style.cursor = "grabbing";
-    document.body.style.userSelect = "none"; // Prevent text selection
+  var elems = document.querySelectorAll('.carousel');
+  var instances = M.Carousel.init(elems, {
+    numVisible: 7,
+    noWrap: true,
+    shift: 100,
+    dist: -200,
   });
-
-  blobPath.addEventListener("pointermove", (event) => {
-    if (!isDragging) return;
-    const deltaX = startX - event.clientX;
-    updateScrollPosition(deltaX);
-    startX = event.clientX;
-  });
-
-  window.addEventListener("pointerup", () => {
-    isDragging = false;
-    blobPath.style.cursor = "grab";
-    document.body.style.userSelect = ""; // Restore text selection
-  });
-
-  // Mouse wheel support
-  window.addEventListener("wheel", (event) => {
-    updateScrollPosition(event.deltaY * 0.2);
-  });
-
-  // Touch swipe support
-  let touchStartX = 0;
-  window.addEventListener("touchstart", (event) => {
-    touchStartX = event.touches[0].clientX;
-  });
-
-  window.addEventListener("touchmove", (event) => {
-    const touchDeltaX = touchStartX - event.touches[0].clientX;
-    updateScrollPosition(touchDeltaX);
-    touchStartX = event.touches[0].clientX;
-  });
-
-  // Set cursor for blob-path
-  blobPath.style.cursor = "grab";
+  instances[0].set(blobData.length - 1);
 });
