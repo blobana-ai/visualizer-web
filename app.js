@@ -47,16 +47,25 @@ document.addEventListener("DOMContentLoaded", async () => {
         : blob.message;
 
       details.innerHTML = `
-        <div><strong><i class="fas fa-comment"></i> <a href="https://x.com/${blobXHandle}/status/${blob.tweetId}" target="_blank" style="color: blue;">Tweet</a> / Onchain Memo:</strong> <span>${displayedMessage}</span> ${isTruncated
+        <div><strong><i class="fas fa-comment"></i> <a href="https://x.com/${blobXHandle}/status/${
+        blob.tweetId
+      }" target="_blank" style="color: blue;">Tweet</a> / Onchain Memo:</strong> <span>${displayedMessage}</span> ${
+        isTruncated
           ? `<button class="read-more-btn text-blue-500">Read More</button>`
           : ""
-        }</div>
+      }</div>
         <div><strong><i class="fas fa-clock"></i> Timestamp:</strong> ${new Date(
           blob.timestamp
         ).toLocaleString()}</div>
-        <div><strong><i class="fas fa-block"></i> Blocknumber:</strong> ${blob.blocknumber}</div>
-        <div><strong><i class="fas fa-smile"></i> Emotion Status:</strong> ${blob.emotion}</div>
-        <div><strong><i class="fas fa-coins"></i> Token:</strong> $${blob.price}</div>
+        <div><strong><i class="fas fa-block"></i> Blocknumber:</strong> ${
+          blob.blocknumber
+        }</div>
+        <div><strong><i class="fas fa-smile"></i> Emotion Status:</strong> ${
+          blob.emotion
+        }</div>
+        <div><strong><i class="fas fa-coins"></i> Token:</strong> $${
+          blob.price
+        }</div>
         <div><strong><i class="fas fa-chart-line"></i> Market Cap:</strong> $${blob.mcap.toLocaleString()}</div>
         <div><strong><i class="fas fa-users"></i> Holders:</strong> ${blob.holders.toLocaleString()}</div>
         <div><strong><i class="fas fa-piggy-bank"></i> Treasury Worth:</strong> $${blob.treasury.toLocaleString()}</div>
@@ -65,7 +74,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const button = document.createElement("a");
       button.href = `https://solscan.io/tx/${blob.txHash}?cluster=devnet`;
       button.classList.add("block-button");
-      button.innerHTML = `<span class="blob-text">View TXN</span>`;
+      button.innerHTML = `<span class="blob-text leading-none">View <br/>TXN</span>`;
       button.target = "_blank";
 
       blobBlock.appendChild(block);
@@ -92,7 +101,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const blobData = await fetchBlobData();
   numBlobs = blobData.length;
   renderBlobs(blobData);
-
 
   function animateScroll() {
     scrollPosition += (targetScrollPosition - scrollPosition) * 0.1; // Smooth easing
@@ -161,4 +169,4 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // Set cursor for blob-path
   blobPath.style.cursor = "grab";
-})
+});
